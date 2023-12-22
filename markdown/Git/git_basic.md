@@ -219,3 +219,4 @@ bab6792 First commit
 - `git remote add <저장소 이름> <저장소 주소>` : git에게 원격저장소(remote)를 추가(add)하라는 명령어
 
 
+> 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 : git TIL 꾸미기 -> Daily TIL의 github token 값
