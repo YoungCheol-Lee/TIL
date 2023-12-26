@@ -1,6 +1,6 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/42576
 # 231226 22:33~23:34
-# chat gpt 사용 -> 사실상 못풀었음
+# chat gpt 사용(hash사용 제안) -> dict 힌트 얻음 (사실상 못풀었음)
 
 
 # 1명을 제외하고 모두 마라톤 완주
