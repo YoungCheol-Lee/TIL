@@ -48,7 +48,9 @@ print(my_dict.items())  # 모든 키-값 쌍 출력
 ```python
 dict(sorted(my_dict.items()))   
 ```
-
+#### sorted() vs .sort() 차이
+- sorted()는 원본 리스트를 놔두고, return 얓새로운 정렬된 리스트
+- .sort()는 원본 리스트를 정렬하고 return None
 > 주의! sorted(my_dict.items()) 만 하면 my_dict의 (key, val)가 튜플 형태로 list 정렬됨   
 
 - value 기준 내림차순 정렬   
