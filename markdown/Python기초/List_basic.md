@@ -1,29 +1,36 @@
 # List 정리
 
-## Array vs List
-- Array 특징   
-1. 사이즈가 고정(RAM 낭비가 심함)
-2. Array의 요소간 위치가 서로 옆 주소에 존재
-3. 실행 속도가 빠름(장점)
-- List 특징
-1. 사이즈가 가변(RAM 낭비 감소)
-2. List의 요소간 위치가 무작위
+## Lambda 함수 활용
+- Lambda 함수란, 간단한 로직의 함수를 한 줄로 표현할 때 사용
 
-## Pandas
-- 수치형 테이블과 시계열 데이터를 조작하고 운영하기 위한 파이썬의 **데이터 분석 라이브러리**   
-- 즉, 파이썬에서 `표 데이터`를 분석하고 처리하기 위한 툴
+1. lambda 표현식
+  - 주로 1줄짜리 함수이면서, 여러 번 쓰지 않는 함수일 때, 함수를 만들지 않고 lambda로 바로 사용
+  - 매개변수가 1개 이상이면서, return구문 포함 무조건 1줄일 경우 사용 가능
+
+> 맨 앞에 lambda 적기
+> def, 함수이름, 소괄호 지우기
+> :남기고 엔터, return 지우기
 
 ```python
-# pandas 실행
-import pandas as pd
-# csv파일 읽기
-df = pd.read_csv('./<폴더명>/<csv파일명>', index_col='<첫번째 컬럼명>')
+lambda 변수: <코드블럭>
+
+# 예시1: 리스트의 각 요소를 제곱
+nums = [1, 2, 3, 4, 5]
+squares = list(map(lambda x: x ** 2, nums))
+# nums리스트의 각 요소를 x에 받고, 그것을 제곱한 후 list화(map은 함수, iterable변수 로 구성되고, iterable변수의 각 요소에 모두 함수 적용해서 return)
+print(squares)  # 출력: [1, 4, 9, 16, 25]
+
+
+# 예시2: 리스트에서 짝수만 필터링
+nums = [1, 2, 3, 4, 5]
+evens = list(filter(lambda x: x % 2 == 0, nums))
+print(evens)  # 출력: [2, 4]
+
+# 예시3: 리스트를 특정 기준으로 정렬하는 예제
+fruits = ['apple', 'banana', 'cherry']
+# 여기서 key 를 사용하는 이유는, 리스트의 각 요소를 입력 받아 정렬에 사용될 값(len(x))를 반환
+# 즉, key매개변수를 통해서 어떤 기준으로 정렬할지 결정할 수 있음.
+fruit = sorted(fruits, key=lambda x: len(x))
+print(fruit)  # 출력: ['apple', 'cherry', 'banana']
 
 ```
-
-### 이산형 변수 vs 연속형 변수
-- 이산형 변수
-1. 인접한 숫자 사이에 값이 존재 X
-   -  ex) 주사위의 눈 - 1, 2, 3, 4, 5, 6 사이에 1.5 라는 값 존재 X
-   
-- 연속형 변수
