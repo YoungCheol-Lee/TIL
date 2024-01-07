@@ -1,6 +1,5 @@
-my_dict = {'apple': [2, 1, 3], 'banana': [1, 2, 3], 'cherry': [3, 2, 1]}
+test1 = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]
 
-# value의 첫 번째 요소를 기준으로 딕셔너리 정렬
-sorted_dict = sorted(my_dict.items(), key=lambda item: item[1][0])
-
-print(sorted_dict)
+for row_idx, row_num in enumerate(test1):
+    for col_idx, col_num in enumerate(row_num):
+        print(row_idx, col_idx), print(col_num)
