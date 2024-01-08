@@ -1,5 +1,3 @@
-test1 = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]
-
-for row_idx, row_num in enumerate(test1):
-    for col_idx, col_num in enumerate(row_num):
-        print(row_idx, col_idx), print(col_num)
+test1 = [1,2,3,4,5]
+test1.reverse()
+print(test1[-1:])
