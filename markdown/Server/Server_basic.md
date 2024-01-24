@@ -10,7 +10,24 @@
         - Tempalte: 사용자에게 보여지는 부분을 담당. HTML과 DTL(Django Template Language)을 이용하여 웹페이지 생성
     3. 여러 편의 기능: 사용자 인증, 관리자 페이지, 폼처리, RSS 피드, 캐싱, ORM(Object-Relational Mapping) 등
 
-- Django 명령어
+### Django Request-Response 순서
+- 먼저, Project폴더 -> APP폴더 -> Template 순서로 Request하며 html 생성
+
+0. Project폴더/settings.py: 새로운 app 추가
+1. Project폴더/urls.py: urlpatterns에 원하는 URL문자열 추가
+    - `path(<URL문자열>, include('APP폴더명.urls))`
+2. APP폴더/urls.py: urlpatterns에 원하는 URL문자열 및 views호출
+    - views에서 함수명 호출을 위해 `from . import views` 필요
+    - `path(<URL문자열>, views.<함수명>)`
+3. APP폴더/views.py: 위의 함수명으로 함수 생성
+    - `return render(request, '<html파일명>')`
+4. APP폴더/templates폴더생성/<html파일명>: 원하는 html 작성
+    - templates 폴더 명은 무조건 `templates`   
+
+**Django와 같이 Framework 들은 어느정도 정해진 일을 수행해야함**
+
+
+### Django 명령어
 ```bash
 # 새로운 project를 <폴더명>으로 생성
 django-admin startproject <폴더명>
@@ -32,21 +49,7 @@ from django.http import HttpResponse
 > Django를 포함하여 Framework가 무조건 최신 버전이라고 좋은건 아님.   
 > 회사에서 신버전을 사용하지 않을 확률이 높고, 버전이 달라지면 엮여 있는 다른 프로그램들이 작동하지 않을 확률이 있음.   
 
-### Django Request-Response 순서
-- 먼저, Project폴더 -> APP폴더 -> Template 순서로 Request하며 html 생성
-
-0. Project폴더/settings.py: 새로운 app 추가
-1. Project폴더/urls.py: urlpatterns에 원하는 URL문자열 추가
-    - `path(<URL문자열>, include('APP폴더명.urls))`
-2. APP폴더/urls.py: urlpatterns에 원하는 URL문자열 및 views호출
-    - views에서 함수명 호출을 위해 `from . import views` 필요
-    - `path(<URL문자열>, views.<함수명>)`
-3. APP폴더/views.py: 위의 함수명으로 함수 생성
-    - `return render(request, '<html파일명>')`
-4. APP폴더/templates폴더생성/<html파일명>: 원하는 html 작성
-    - templates 폴더 명은 무조건 `templates`
-
-#### DTL(Django Template Language)
+### DTL(Django Template Language)
 - Django의 템플릿 시스템으로 HTML에서 동적인 데이터 표현을 쉽게 만들고, 코드의 재사용성을 높여줌.   
 1. 변수
    - {{` 변수명 `}}
@@ -57,3 +60,13 @@ from django.http import HttpResponse
    - {`% for문 or if문  %`} {`% endfor or endif %`}
     - {% %} 를 이용하여 for문 또는 if문을 HTML에서 사용 가능
 > `주의!`> {{변수}} 에서 잘못된 key 또는 존재하지 않는 key 를 작성해도 에러가 발생하지 않음!
+
+3. HTML 공통 부분 제거
+    - 모든 Apps들의 templates의 .html 파일들은 모두 공통된 부분이 있음
+    1. Project폴더에 templates폴더/base.html 생성. App폴더가 아님. 폴더명 templates 여야 django extention이 인식
+    2. Master폴더의 settings.py에 TEMPLATES = [DIR: [BASE_DIR / 'templates'] ]추가
+    3. <Apps이름>/views.py 에서 함수의 `return render(request, '<Apps이름>/<html이름>.html)` 로 html파일 위치 정하기
+    4. base.html에 `!+tab` 이후 <body>에 `{% block content %}` `{% endblock content %}` 추가.
+        - 이때, `content`가 base.html과 <Apps>/templates/<html파일>에도 동일해야함
+    5. Apps들의 templates/<html파일> 들을 모두 `{% extends "base.html" %}` 를 최상단에 쓰고, `{% block content %}` `{% endblock content %}` 추가
+

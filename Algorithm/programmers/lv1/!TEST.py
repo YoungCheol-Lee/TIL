@@ -1,3 +1,2 @@
-test1 = [1,2,3,4,5]
-test1.reverse()
-print(test1[-1:])
+test1 = ["1", "2", "3", "4"]
+print(test1[::-1])
